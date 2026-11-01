@@ -1,6 +1,6 @@
 # Ivory Dental Studio — website + Studio OS
 
-A premium, animation-rich dental clinic website (sans-only type: Bricolage Grotesque + Onest, cobalt × lime palette) built with **Next.js 16**, **Tailwind CSS v4**, **Framer Motion** and **Lenis**, plus a complete **admin panel (CRM + CMS)** that controls the entire site.
+A premium, animation-rich dental clinic website (signature type: Anybody condensed + ultra-wide pairs with Instrument Sans; ivory × vermilion palette) built with **Next.js 16**, **Tailwind CSS v4**, **Framer Motion** and **Lenis**, plus a complete **admin panel (CRM + CMS)** that controls the entire site.
 
 ## Quick start
 
@@ -19,8 +19,8 @@ npm run dev
 | Area | What it does |
 | --- | --- |
 | **Intro animation** | Tooth outline draws itself, letters rise, counter 000→100, panel lifts with a curved edge. 3 styles (smile / curtain / minimal), text, duration and once-per-visit are all set from the admin. |
-| **Dynamic-island navbar** | Floating dark pill with a scroll-progress ring and a live **Open now / Closed** status from your opening hours. It shrinks while you scroll down and expands on scroll up. It morphs into a full menu with image previews. On mobile it sits at the **bottom** within thumb reach and expands upward as a sheet. |
-| **Hero** | “Capsule” hero: a pill-shaped photo sits inside the giant headline like a word; on scroll it grows into a full-screen window into the clinic with a caption. Lime rotating badge, pointer depth, magnetic CTA. |
+| **Navigation** | Desktop: a vertical left rail with icon links, tooltips, scroll-progress line, live open/closed dot and a vertical Book tab. Mobile: an app-style dock with a raised tooth-shaped Book button. Both open a full-screen vermilion menu indexed with dental (FDI) numbers. |
+| **Hero** | Interactive dental arch: 14 teeth (with FDI numbers) around a dome-shaped window. Hover or tap a tooth to reveal a treatment inside the dome; it autoplays when idle, and the teeth fan out on scroll. |
 | **Scroll effects** | Apple-style text that lights up word-by-word, a clinic image that expands to full-bleed, pinned horizontal treatment carousel (desktop) with snap carousel on touch, stacking “Your visit” cards, parallax, counters, footer wordmark rise. |
 | **Smile gallery** | Drag-to-compare before / after slider (mouse, touch & keyboard). |
 | **Booking wizard** | Treatment → specialist → date & time (live slot availability) → details → animated confirmation with *Add to Google Calendar*. Creates the appointment **and** the patient in the CRM. |

@@ -22,7 +22,7 @@ export default async function ServicePage({ params }: PageProps<"/services/[slug
 
   return (
     <>
-      <section className="container-x pt-10 md:pt-36">
+      <section className="container-x pt-10 md:pt-20">
         <Link href="/services" className="eyebrow hover:text-ink">
           ← All treatments
         </Link>

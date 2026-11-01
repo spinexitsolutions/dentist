@@ -41,7 +41,7 @@ export default async function Home() {
 
   return (
     <>
-      <Hero hero={s.hero} avatars={db.testimonials} serviceTitles={db.services.map((x) => x.title)} />
+      <Hero hero={s.hero} avatars={db.testimonials} services={db.services} />
       {s.sections
         .filter((x) => x.enabled && render[x.key])
         .map((x) => (

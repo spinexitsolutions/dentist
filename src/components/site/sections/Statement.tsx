@@ -23,7 +23,7 @@ export default function Statement({ text }: { text: string }) {
         <p className="mb-8 flex items-center gap-2.5 text-[13px] font-medium text-ink/70">
           <span className="size-1.5 rounded-full bg-accent" /> Our philosophy
         </p>
-        <p className="font-[family-name:var(--font-bricolage)] text-[1.9rem] font-medium leading-[1.12] tracking-[-0.04em] md:text-[3.5rem]">
+        <p className="font-[family-name:var(--font-bricolage)] text-[1.9rem] font-medium [font-variation-settings:'wdth'_80] leading-[1.12] tracking-[-0.04em] md:text-[3.5rem]">
           {words.map((w, i) => {
             const start = i / words.length;
             return <Word key={i} word={w} progress={scrollYProgress} range={[start, Math.min(1, start + 2 / words.length)]} />;

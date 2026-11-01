@@ -50,7 +50,7 @@ export default function Services({ services }: { services: Service[] }) {
     const mq = window.matchMedia("(min-width: 768px) and (pointer: fine)");
     const measure = () => {
       setDesktop(mq.matches);
-      if (track.current) setDist(Math.max(0, track.current.scrollWidth - window.innerWidth));
+      if (track.current) setDist(Math.max(0, track.current.scrollWidth - (track.current.parentElement?.clientWidth ?? window.innerWidth)));
     };
     measure();
     window.addEventListener("resize", measure);
@@ -97,7 +97,7 @@ export default function Services({ services }: { services: Service[] }) {
     <section ref={ref} style={{ height: `calc(100vh + ${dist}px)` }} className="relative">
       <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden pt-16">
         <div className="container-x">{head}</div>
-        <motion.div ref={track} style={{ x }} className="mt-8 flex gap-5 pl-[max(2rem,calc((100vw-1320px)/2+2rem))] pr-8">
+        <motion.div ref={track} style={{ x }} className="mt-8 flex gap-5 pl-[max(2rem,calc((100vw-84px-1320px)/2+2rem))] pr-8">
           {services.map((s, i) => (
             <ServiceCard key={s.id} s={s} i={i} />
           ))}

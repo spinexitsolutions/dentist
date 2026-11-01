@@ -23,6 +23,7 @@ const TABS = [
 type Tab = (typeof TABS)[number]["id"];
 
 const PRESETS = [
+  { name: "Vermilion", accent: "#F2542D", pop: "#BFE3FF", ink: "#16130F", paper: "#F3EEE6" },
   { name: "Cobalt × Lime", accent: "#2B4BFF", pop: "#D4FF3A", ink: "#0A0E1A", paper: "#F2F3EF" },
   { name: "Ultraviolet", accent: "#6A3DFF", pop: "#FFD43B", ink: "#0E0B18", paper: "#F4F2F8" },
   { name: "Tangerine", accent: "#FF5A1F", pop: "#C8F7DC", ink: "#16110E", paper: "#F6F2EC" },
@@ -241,21 +242,21 @@ export default function SettingsEditor() {
 
           {tab === "hero" && (
             <>
-              <Section title="Hero" text="Two giant words frame the capsule image, which expands to full screen as visitors scroll.">
+              <Section title="Hero" text="An interactive dental arch: each tooth reveals a treatment inside the dome. Treatments come from the Treatments list.">
                 {text("hero", "eyebrow", "Eyebrow", { full: true })}
-                {text("hero", "title", "Big word — left")}
-                {text("hero", "highlight", "Big word — right (thin)")}
+                {text("hero", "title", "Headline — bold condensed")}
+                {text("hero", "highlight", "Headline — thin wide")}
                 {text("hero", "titleEnd", "Kicker line", { full: true })}
-                {text("hero", "caption", "Caption shown when the image fills the screen", { full: true })}
+                {text("hero", "caption", "Welcome slide caption (inside the dome)", { full: true })}
                 {text("hero", "subtitle", "Subtitle", { area: true })}
                 {text("hero", "ctaPrimary", "Primary button")}
                 {text("hero", "ctaSecondary", "Secondary button")}
                 {text("hero", "rating", "Rating")}
                 {text("hero", "reviews", "Reviews label")}
-                <FieldWrap label="Portrait image (arch)" className="sm:col-span-2">
+                <FieldWrap label="Welcome image (first slide inside the dome)" className="sm:col-span-2">
                   <ImageField value={s.hero.image} onChange={(v) => up("hero", { image: v })} />
                 </FieldWrap>
-                <FieldWrap label="Wide clinic image (scroll-expand)" className="sm:col-span-2">
+                <FieldWrap label="Studio image (menu overlay)" className="sm:col-span-2">
                   <ImageField value={s.hero.wideImage} onChange={(v) => up("hero", { wideImage: v })} />
                 </FieldWrap>
               </Section>

@@ -1,12 +1,12 @@
 import type { Metadata, Viewport } from "next";
-import { Bricolage_Grotesque, Onest } from "next/font/google";
+import { Anybody, Instrument_Sans } from "next/font/google";
 import { getSettings } from "@/lib/db";
 import "./globals.css";
 
 export const dynamic = "force-dynamic";
 
-const display = Bricolage_Grotesque({ variable: "--font-bricolage", subsets: ["latin"], weight: "variable", display: "swap" });
-const body = Onest({ variable: "--font-onest", subsets: ["latin"], weight: "variable", display: "swap" });
+const display = Anybody({ variable: "--font-bricolage", subsets: ["latin"], weight: "variable", axes: ["wdth"], display: "swap" });
+const body = Instrument_Sans({ variable: "--font-onest", subsets: ["latin"], weight: "variable", axes: ["wdth"], display: "swap" });
 
 export async function generateMetadata(): Promise<Metadata> {
   const s = await getSettings();
@@ -18,7 +18,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export const viewport: Viewport = {
-  themeColor: "#F2F3EF",
+  themeColor: "#F3EEE6",
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",

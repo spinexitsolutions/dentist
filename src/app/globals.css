@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
 :root {
-  --accent: #2b4bff;
-  --pop: #d4ff3a;
-  --ink: #0a0e1a;
-  --paper: #f2f3ef;
+  --accent: #f2542d;
+  --pop: #bfe3ff;
+  --ink: #16130f;
+  --paper: #f3eee6;
   --accent-soft: color-mix(in oklab, var(--accent) 14%, white);
   --accent-deep: color-mix(in oklab, var(--accent) 70%, black);
   --muted: color-mix(in oklab, var(--ink) 55%, var(--paper));
@@ -81,20 +81,23 @@ html.lenis body {
   color: var(--muted);
 }
 
+/* Signature type: condensed heavy words … */
 @utility display {
   font-family: var(--font-bricolage);
-  font-weight: 600;
-  letter-spacing: -0.05em;
-  line-height: 0.92;
-  font-variation-settings: "wdth" 90;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 0.9;
+  font-variation-settings: "wdth" 68;
 }
 
 /* Sans-only contrast accent: a light-weight word inside a bold headline */
+/* … paired with ultra-wide hairline words */
 @utility thin-word {
   font-family: var(--font-bricolage);
   font-style: normal;
-  font-weight: 250;
-  letter-spacing: -0.045em;
+  font-weight: 220;
+  letter-spacing: -0.04em;
+  font-variation-settings: "wdth" 125;
 }
 
 @utility glass {
@@ -188,10 +191,13 @@ html.lenis body {
   }
 }
 
-h1,
-h2,
-h3 {
-  font-family: var(--font-bricolage);
+@layer base {
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-bricolage);
+    font-variation-settings: "wdth" 82;
+  }
 }
 .tabular-nums {
   font-variant-numeric: tabular-nums;

@@ -64,7 +64,7 @@ export function FloatingWhatsapp({ number }: { number: string }) {
 
 export function PageHeader({ eyebrow, title, italic, text }: { eyebrow: string; title: string; italic?: string; text?: string }) {
   return (
-    <section className="container-x pb-10 pt-14 md:pb-16 md:pt-40">
+    <section className="container-x pb-10 pt-14 md:pb-16 md:pt-24">
       <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="eyebrow flex items-center gap-3">
         <span className="size-1.5 rounded-full bg-accent" />
         {eyebrow}
