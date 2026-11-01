@@ -8,7 +8,7 @@ import SectionHead from "./SectionHead";
 function Card({ step, i, total, progress }: { step: Step; i: number; total: number; progress: MotionValue<number> }) {
   const start = i / total;
   const scale = useTransform(progress, [start, 1], [1, 1 - (total - i) * 0.04]);
-  const dim = useTransform(progress, [start, Math.min(1, start + 1 / total)], [0, i === total - 1 ? 0 : 0.12]);
+  const dim = useTransform(progress, [start, Math.min(1, start + 1 / total)], [0, i === total - 1 ? 0 : 0.05]);
   return (
     <div className="sticky top-0 flex h-[88vh] items-start justify-center pt-[10vh] md:h-screen md:pt-[14vh]" style={{ top: `${i * 18}px` }}>
       <motion.article

@@ -37,7 +37,7 @@ export default async function Home({ searchParams }: PageProps<"/">) {
     pricing: () => <Pricing plans={db.plans} insurers={s.insurers} />,
     faq: () => <Faq faqs={db.faqs} contact={s.contact} />,
     blog: () => (posts.length ? <Blog posts={posts} /> : null),
-    cta: () => <Cta cta={s.cta} contact={s.contact} />,
+    cta: () => <Cta cta={s.cta} contact={s.contact} images={[...db.doctors.map((d) => d.image), ...db.testimonials.slice(0, 4).map((t) => t.avatar)]} />,
     contact: () => <Contact contact={s.contact} />,
   };
 

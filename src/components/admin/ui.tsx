@@ -68,14 +68,14 @@ export function Button({ variant = "primary", size = "md", className, loading, c
 }
 
 export function Card({ className, children }: { className?: string; children?: ReactNode }) {
-  return <div className={cn("rounded-[22px] bg-white p-5 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_-12px_rgba(0,0,0,0.08)] ring-1 ring-black/[.04]", className)}>{children}</div>;
+  return <div className={cn("rounded-[26px] bg-white/90 p-5 shadow-[0_1px_2px_rgba(11,30,51,0.04),0_20px_40px_-24px_rgba(11,30,51,0.18)] ring-1 ring-ink/[.05] backdrop-blur", className)}>{children}</div>;
 }
 
 export function PageTitle({ title, subtitle, actions }: { title: string; subtitle?: string; actions?: ReactNode }) {
   return (
     <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
       <div>
-        <h1 className="text-[28px] font-semibold tracking-[-0.03em] md:text-[34px]">{title}</h1>
+        <h1 className="display text-[38px] md:text-[48px]">{title}</h1>
         {subtitle && <p className="mt-1 text-[15px] text-black/50">{subtitle}</p>}
       </div>
       {actions && <div className="flex flex-wrap items-center gap-2">{actions}</div>}

@@ -146,7 +146,7 @@ export function createSeed(): DB {
         image: IMG.heroSmile,
         wideImage: IMG.clinicWide,
         caption: "Gentle, precise, beautifully calm.",
-        variant: "bento",
+        variant: "orbit",
         ctaPrimary: "Book a visit",
         ctaSecondary: "Explore treatments",
         rating: "4.9",

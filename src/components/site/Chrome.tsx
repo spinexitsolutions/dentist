@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Phone } from "lucide-react";
 import type { Settings } from "@/lib/types";
 import { WhatsappIcon } from "./icons";
+import { OrbitBackdrop, Pill, SmileLine } from "./Orbit";
 
 export function Announcement({ a }: { a: Settings["announcement"] }) {
   if (!a.enabled) return null;
@@ -64,26 +65,30 @@ export function FloatingWhatsapp({ number }: { number: string }) {
 
 export function PageHeader({ eyebrow, title, italic, text }: { eyebrow: string; title: string; italic?: string; text?: string }) {
   return (
-    <section className="container-x pb-10 pt-14 md:pb-16 md:pt-24">
-      <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="eyebrow flex items-center gap-3">
-        <span className="size-1.5 rounded-full bg-accent" />
-        {eyebrow}
-      </motion.p>
-      <h1 className="display mt-5 max-w-5xl text-[3.2rem] md:text-[7rem]">
-        <motion.span initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }} className="inline-block">
-          {title}
-        </motion.span>{" "}
-        {italic && (
-          <motion.span initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.1 }} className="thin-word inline-block text-accent">
-            {italic}
-          </motion.span>
+    <section className="relative overflow-hidden pb-12 pt-16 md:pb-20 md:pt-24">
+      <OrbitBackdrop />
+      <div className="container-x relative flex flex-col items-center text-center">
+        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+          <Pill>{eyebrow}</Pill>
+        </motion.div>
+        <h1 className="display mt-6 max-w-5xl text-[3.2rem] md:text-[6.6rem]">
+          <motion.span initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }} className="inline-block">
+            {title}
+          </motion.span>{" "}
+          {italic && (
+            <SmileLine play delay={0.7}>
+              <motion.span initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.1 }} className="thin-word inline-block text-accent">
+                {italic}
+              </motion.span>
+            </SmileLine>
+          )}
+        </h1>
+        {text && (
+          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.2 }} className="mt-7 max-w-2xl text-lg leading-relaxed text-ink/60">
+            {text}
+          </motion.p>
         )}
-      </h1>
-      {text && (
-        <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.2 }} className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">
-          {text}
-        </motion.p>
-      )}
+      </div>
     </section>
   );
 }

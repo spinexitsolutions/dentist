@@ -16,7 +16,7 @@ export default function Faq({ faqs, contact }: { faqs: FaqT[]; contact: Settings
     <section className="container-x py-20 md:py-32">
       <div className="grid gap-12 md:grid-cols-[1fr_1.3fr] md:gap-20">
         <div className="md:sticky md:top-32 md:self-start">
-          <SectionHead eyebrow="FAQ" title="Questions," italic="answered honestly." />
+          <SectionHead align="left" eyebrow="FAQ" title="Questions," italic="answered honestly." />
           <Reveal delay={0.2}>
             <div className="mt-10 rounded-[24px] bg-accent-soft p-6">
               <p className="text-lg font-medium tracking-tight">Still curious?</p>

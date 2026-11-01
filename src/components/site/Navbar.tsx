@@ -71,7 +71,7 @@ export default function Navbar({ brand, contact, social, studioImage }: Props) {
     <>
       {/* ============ Desktop: vertical rail ============ */}
       <aside className="fixed inset-y-0 left-0 z-50 hidden w-[84px] flex-col items-center border-r border-ink/10 bg-paper/90 py-5 backdrop-blur-xl md:flex" aria-label="Main">
-        <Link href="/" className="group relative grid size-12 place-items-center rounded-2xl bg-ink text-paper transition hover:bg-accent" aria-label={brand.name}>
+        <Link href="/" className="group relative grid size-12 place-items-center rounded-full bg-ink text-paper transition hover:bg-accent" aria-label={brand.name}>
           <ToothMark className="size-5" />
           <Tip>{brand.name}</Tip>
         </Link>
@@ -87,8 +87,8 @@ export default function Navbar({ brand, contact, social, studioImage }: Props) {
           {NAV_LINKS.map((l) => {
             const active = isActive(l.href);
             return (
-              <Link key={l.href} href={l.href} className={cn("group relative grid size-11 place-items-center rounded-2xl transition", active ? "text-paper" : "text-ink/55 hover:bg-ink/5 hover:text-ink")} aria-label={l.label}>
-                {active && <motion.span layoutId="rail-active" className="absolute inset-0 rounded-[14px_14px_18px_18px] bg-accent" transition={{ type: "spring", stiffness: 420, damping: 34 }} />}
+              <Link key={l.href} href={l.href} className={cn("group relative grid size-11 place-items-center rounded-full transition", active ? "text-paper" : "text-ink/55 hover:bg-ink/5 hover:text-ink")} aria-label={l.label}>
+                {active && <motion.span layoutId="rail-active" className="absolute inset-0 rounded-full bg-accent" transition={{ type: "spring", stiffness: 420, damping: 34 }} />}
                 <l.icon className="relative size-[18px]" strokeWidth={1.7} />
                 <Tip>
                   <span className="mr-1.5 opacity-50">{l.fdi}</span>
@@ -114,7 +114,7 @@ export default function Navbar({ brand, contact, social, studioImage }: Props) {
             <Tip>{status.label}</Tip>
           </span>
         )}
-        <Link href="/book" className="group relative flex w-12 flex-col items-center gap-2 rounded-2xl bg-accent py-4 text-white transition hover:bg-ink">
+        <Link href="/book" className="group relative flex w-12 flex-col items-center gap-2 rounded-full bg-accent py-5 text-white transition hover:bg-ink">
           <ArrowUpRight className="size-4 transition-transform duration-500 group-hover:rotate-45" />
           <span className="text-[12px] font-bold uppercase tracking-[0.2em] [writing-mode:vertical-rl] rotate-180">Book</span>
         </Link>
@@ -134,7 +134,7 @@ export default function Navbar({ brand, contact, social, studioImage }: Props) {
               </Link>
             ))}
             <Link href="/book" className="-mt-8 flex flex-col items-center gap-1 text-[10.5px] font-semibold">
-              <span className="grid size-[58px] place-items-center rounded-[20px_20px_26px_26px] bg-accent text-white shadow-[0_10px_30px_-8px_var(--accent)] ring-[5px] ring-paper">
+              <span className="grid size-[58px] place-items-center rounded-full bg-accent text-white shadow-[0_10px_30px_-8px_var(--accent)] ring-[5px] ring-paper">
                 <ToothMark className="size-6" />
               </span>
               Book

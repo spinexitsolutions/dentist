@@ -43,7 +43,7 @@ export default async function ServicesPage() {
           ))}
         </div>
       </section>
-      <Cta cta={db.settings.cta} contact={db.settings.contact} />
+      <Cta cta={db.settings.cta} contact={db.settings.contact} images={[...db.doctors.map((d) => d.image), ...db.testimonials.slice(0, 4).map((t) => t.avatar)]} />
     </>
   );
 }

@@ -7,7 +7,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { Appointment, Lead, Patient, Subscriber } from "@/lib/types";
 import { formatDate, formatTime } from "@/lib/utils";
 import { api } from "@/components/admin/api";
-import { Badge, Button, Card, PageTitle, STATUS_TONE, useToast } from "@/components/admin/ui";
+import { Badge, Button, Card, STATUS_TONE, useToast } from "@/components/admin/ui";
 
 const pad = (n: number) => String(n).padStart(2, "0");
 const iso = (d: Date) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
@@ -73,22 +73,45 @@ export default function Dashboard() {
 
   return (
     <>
-      <PageTitle
-        title="Good day 👋"
-        subtitle={today ? formatDate(today, { weekday: "long", day: "numeric", month: "long", year: "numeric" }) : " "}
-        actions={
-          <>
-            <Link href="/admin/appointments?new=1">
-              <Button variant="primary">New appointment</Button>
-            </Link>
-            <a href="/" target="_blank">
-              <Button variant="outline">
-                View site <ArrowUpRight className="size-4" />
-              </Button>
-            </a>
-          </>
-        }
-      />
+      {/* greeting orbit card */}
+      <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="relative mb-4 overflow-hidden rounded-[30px] bg-ink p-6 text-white md:p-9">
+        <div className="pointer-events-none absolute -right-24 top-1/2 size-[440px] -translate-y-1/2 rounded-full bg-accent/30 blur-3xl" />
+        <div className="pointer-events-none absolute -right-16 top-1/2 hidden size-[380px] -translate-y-1/2 md:block">
+          <div className="absolute inset-0 rounded-full border border-white/10" />
+          <div className="absolute inset-[16%] rounded-full border border-dashed border-white/10" />
+          <div className="absolute inset-0" style={{ animation: "spin 60s linear infinite" }}>
+            {[0, 1, 2, 3, 4].map((k) => (
+              <span key={k} className="absolute size-3 rounded-full bg-pop" style={{ left: `${50 + 50 * Math.round(Math.cos(k * 1.2566) * 1000) / 1000}%`, top: `${50 + 50 * Math.round(Math.sin(k * 1.2566) * 1000) / 1000}%`, transform: "translate(-50%,-50%)", opacity: 0.4 + k * 0.12 }} />
+            ))}
+          </div>
+          <div className="absolute inset-[30%] grid place-items-center rounded-full bg-white/10 text-center backdrop-blur">
+            <span>
+              <span className="display block text-5xl">{appts.filter((a) => a.date === today && a.status !== "cancelled").length}</span>
+              <span className="text-xs text-white/60">visits today</span>
+            </span>
+          </div>
+        </div>
+        <p className="relative inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-[12.5px] text-white/75">
+          <span className="size-1.5 rounded-full bg-pop" />
+          {today ? formatDate(today, { weekday: "long", day: "numeric", month: "long" }) : "Today"}
+        </p>
+        <h1 className="display relative mt-4 text-[44px] md:text-[64px]">
+          Good day, <span className="thin-word text-pop">doctor.</span>
+        </h1>
+        <p className="relative mt-2 max-w-md text-[15px] text-white/60">
+          {appts.filter((a) => a.status === "pending").length} appointments need confirmation and {leads.filter((l) => l.status === "new").length} new enquiries are waiting.
+        </p>
+        <div className="relative mt-6 flex flex-wrap gap-2">
+          <Link href="/admin/appointments?new=1">
+            <Button variant="accent">New appointment</Button>
+          </Link>
+          <a href="/" target="_blank">
+            <Button variant="ghost" className="!text-white ring-1 ring-white/20 hover:!bg-white/10">
+              View site <ArrowUpRight className="size-4" />
+            </Button>
+          </a>
+        </div>
+      </motion.div>
 
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
         {kpis.map((k, i) => (

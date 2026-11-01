@@ -7,6 +7,7 @@ import { useRef, useState } from "react";
 import type { Service, Settings } from "@/lib/types";
 import { FacebookIcon, InstagramIcon, LinkedinIcon, YoutubeIcon } from "./icons";
 import { NAV_LINKS } from "./Navbar";
+import { SmileLine } from "./Orbit";
 
 function Newsletter() {
   const [state, setState] = useState<"idle" | "loading" | "done" | "error">("idle");
@@ -48,7 +49,7 @@ export default function Footer({ brand, contact, social, services }: { brand: Se
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
             <p className="display text-4xl md:text-5xl">
-              Smile <span className="thin-word text-accent">often.</span>
+              Smile <SmileLine><span className="thin-word text-pop">often.</span></SmileLine>
             </p>
             <p className="mt-4 max-w-sm text-white/60">Monthly notes on oral health, new treatments and members-only offers. No spam, ever.</p>
             <div className="mt-6">

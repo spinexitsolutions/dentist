@@ -57,28 +57,28 @@ export default function AdminShell({ children, email, brand, counts }: { childre
   const nav = (
     <nav className="flex h-full flex-col">
       <div className="flex items-center gap-2.5 px-3 pb-5 pt-1">
-        <span className="grid size-9 place-items-center rounded-xl bg-ink text-white">
+        <span className="grid size-10 place-items-center rounded-full bg-accent text-white ring-4 ring-white/10">
           <ToothMark className="size-4" />
         </span>
         <span className="min-w-0">
           <span className="block truncate text-[14px] font-semibold leading-tight tracking-tight">{brand}</span>
-          <span className="text-[11px] text-black/40">Studio OS</span>
+          <span className="text-[11px] text-white/45">Studio OS</span>
         </span>
       </div>
       <div className="flex-1 space-y-5 overflow-y-auto pb-4" data-lenis-prevent>
         {groups.map((g) => (
           <div key={g.title}>
-            <p className="px-3 pb-1.5 text-[11px] font-medium uppercase tracking-wider text-black/35">{g.title}</p>
+            <p className="px-3 pb-1.5 text-[11px] font-medium uppercase tracking-wider text-white/35">{g.title}</p>
             <ul className="space-y-0.5">
               {g.items.map((it) => {
                 const active = isActive(it.href);
                 return (
                   <li key={it.href}>
-                    <Link href={it.href} className={cn("relative flex items-center gap-3 rounded-xl px-3 py-2 text-[14px] transition", active ? "font-medium text-ink" : "text-black/60 hover:bg-black/[.04] hover:text-ink")}>
-                      {active && <motion.span layoutId="admin-nav" className="absolute inset-0 rounded-xl bg-white shadow-sm ring-1 ring-black/5" transition={{ type: "spring", stiffness: 500, damping: 40 }} />}
-                      <it.icon className={cn("relative size-[18px]", active && "text-accent")} strokeWidth={1.7} />
+                    <Link href={it.href} className={cn("relative flex items-center gap-3 rounded-full px-3.5 py-2 text-[14px] transition", active ? "font-medium text-white" : "text-white/60 hover:bg-white/[.06] hover:text-white")}>
+                      {active && <motion.span layoutId="admin-nav" className="absolute inset-0 rounded-full bg-accent shadow-[0_8px_24px_-8px_var(--accent)]" transition={{ type: "spring", stiffness: 500, damping: 40 }} />}
+                      <it.icon className="relative size-[18px]" strokeWidth={1.7} />
                       <span className="relative flex-1">{it.label}</span>
-                      {!!it.count && <span className="relative rounded-full bg-accent px-1.5 text-[11px] font-semibold text-white">{it.count}</span>}
+                      {!!it.count && <span className={cn("relative rounded-full px-1.5 text-[11px] font-semibold", active ? "bg-white text-accent" : "bg-pop text-ink")}>{it.count}</span>}
                     </Link>
                   </li>
                 );
@@ -87,8 +87,8 @@ export default function AdminShell({ children, email, brand, counts }: { childre
           </div>
         ))}
       </div>
-      <div className="space-y-1 border-t border-black/5 pt-3">
-        <a href="/" target="_blank" className="flex items-center gap-3 rounded-xl px-3 py-2 text-[14px] text-black/60 hover:bg-black/[.04] hover:text-ink">
+      <div className="space-y-1 border-t border-white/10 pt-3">
+        <a href="/" target="_blank" className="flex items-center gap-3 rounded-full px-3.5 py-2 text-[14px] text-white/60 hover:bg-white/[.06] hover:text-white">
           <ExternalLink className="size-[18px]" strokeWidth={1.7} /> View website
         </a>
         <button
@@ -96,23 +96,25 @@ export default function AdminShell({ children, email, brand, counts }: { childre
             await fetch("/api/auth/logout", { method: "POST" });
             window.location.href = "/admin/login";
           }}
-          className="flex w-full items-center gap-3 rounded-xl px-3 py-2 text-[14px] text-black/60 hover:bg-black/[.04] hover:text-ink"
+          className="flex w-full items-center gap-3 rounded-full px-3.5 py-2 text-[14px] text-white/60 hover:bg-white/[.06] hover:text-white"
         >
           <LogOut className="size-[18px]" strokeWidth={1.7} /> Sign out
         </button>
-        <p className="truncate px-3 pt-1 text-[11px] text-black/35">{email}</p>
+        <p className="truncate px-3 pt-1 text-[11px] text-white/35">{email}</p>
       </div>
     </nav>
   );
 
   return (
     <div className="flex min-h-dvh">
-      <aside className="sticky top-0 hidden h-dvh w-[260px] shrink-0 border-r border-black/5 bg-[#F5F5F7]/80 p-3 pt-5 backdrop-blur-xl lg:block">{nav}</aside>
+      <aside className="sticky top-0 hidden h-dvh w-[272px] shrink-0 p-3 lg:block">
+        <div className="h-full rounded-[28px] bg-ink p-3 pt-5 text-white shadow-[0_30px_60px_-30px_rgba(11,30,51,0.6)]">{nav}</div>
+      </aside>
 
       {/* mobile top bar */}
-      <div className="fixed inset-x-0 top-0 z-40 flex items-center justify-between border-b border-black/5 bg-[#F5F5F7]/80 px-4 py-3 backdrop-blur-xl lg:hidden">
+      <div className="fixed inset-x-0 top-0 z-40 flex items-center justify-between border-b border-black/5 bg-paper/80 px-4 py-3 backdrop-blur-xl lg:hidden">
         <span className="flex items-center gap-2 text-[15px] font-semibold tracking-tight">
-          <span className="grid size-8 place-items-center rounded-lg bg-ink text-white">
+          <span className="grid size-8 place-items-center rounded-full bg-accent text-white">
             <ToothMark className="size-3.5" />
           </span>
           Studio OS
@@ -126,13 +128,13 @@ export default function AdminShell({ children, email, brand, counts }: { childre
           <>
             <motion.div className="fixed inset-0 z-50 bg-black/25 lg:hidden" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setOpen(false)} />
             <motion.aside
-              className="fixed inset-y-0 left-0 z-50 w-[280px] bg-[#F5F5F7] p-3 pt-5 shadow-2xl lg:hidden"
+              className="fixed inset-y-0 left-0 z-50 w-[280px] bg-ink p-3 pt-5 text-white shadow-2xl lg:hidden"
               initial={{ x: "-100%" }}
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
               transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
             >
-              <button onClick={() => setOpen(false)} className="absolute right-3 top-4 grid size-8 place-items-center rounded-full bg-black/5" aria-label="Close navigation">
+              <button onClick={() => setOpen(false)} className="absolute right-3 top-4 grid size-8 place-items-center rounded-full bg-white/10" aria-label="Close navigation">
                 <X className="size-4" />
               </button>
               {nav}

@@ -42,6 +42,7 @@ async function loadFromDisk(): Promise<DB> {
     if (["#0F9B8E", "#2B4BFF", "#F2542D"].includes(db.settings.brand.accent.toUpperCase())) {
       Object.assign(db.settings.brand, { accent: seed.settings.brand.accent, pop: seed.settings.brand.pop, ink: seed.settings.brand.ink, paper: seed.settings.brand.paper });
     }
+    if (!db.settings.hero.variant || db.settings.hero.variant === "bento") db.settings.hero.variant = "orbit";
     if (["Smiles,", "Smile", "Every tooth,"].includes(db.settings.hero.title)) {
       Object.assign(db.settings.hero, { title: seed.settings.hero.title, highlight: seed.settings.hero.highlight, titleEnd: seed.settings.hero.titleEnd });
     }
