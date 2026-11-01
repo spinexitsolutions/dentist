@@ -7,6 +7,7 @@ import { useEffect, useState, type ReactNode } from "react";
 import type { Settings } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { TOOTH_PATH } from "@/components/site/icons";
+import { HERO_VARIANTS } from "@/components/site/heroes/types";
 import { api } from "./api";
 import { Button, Card, FieldWrap, ImageField, ListField, PageTitle, Segmented, Toggle, inputBase, useToast } from "./ui";
 
@@ -23,13 +24,12 @@ const TABS = [
 type Tab = (typeof TABS)[number]["id"];
 
 const PRESETS = [
-  { name: "Vermilion", accent: "#F2542D", pop: "#BFE3FF", ink: "#16130F", paper: "#F3EEE6" },
-  { name: "Cobalt × Lime", accent: "#2B4BFF", pop: "#D4FF3A", ink: "#0A0E1A", paper: "#F2F3EF" },
-  { name: "Ultraviolet", accent: "#6A3DFF", pop: "#FFD43B", ink: "#0E0B18", paper: "#F4F2F8" },
-  { name: "Tangerine", accent: "#FF5A1F", pop: "#C8F7DC", ink: "#16110E", paper: "#F6F2EC" },
-  { name: "Ocean", accent: "#0077FF", pop: "#7CFFCB", ink: "#06121F", paper: "#F1F4F6" },
-  { name: "Forest", accent: "#1F7A4D", pop: "#E9FF70", ink: "#0C130F", paper: "#F2F1EA" },
-  { name: "Noir Gold", accent: "#C8A26B", pop: "#F5E6C8", ink: "#0B0B0B", paper: "#F3F0EA" },
+  { name: "Clinical Blue", accent: "#1769E0", pop: "#9FF0DA", ink: "#0B1E33", paper: "#F4F7FA" },
+  { name: "Aqua Mint", accent: "#0E9AA7", pop: "#D2F5EC", ink: "#08282C", paper: "#F3F8F7" },
+  { name: "Navy & Pearl", accent: "#1D3F7A", pop: "#E9DFC7", ink: "#0C1424", paper: "#F7F5F0" },
+  { name: "Sky", accent: "#0A8BD6", pop: "#CFF1FF", ink: "#0A1626", paper: "#F5FAFD" },
+  { name: "Sage Clinic", accent: "#3B8C7A", pop: "#E1F2E9", ink: "#102019", paper: "#F4F6F2" },
+  { name: "Lavender Calm", accent: "#5B5BD6", pop: "#E4E1FF", ink: "#12122A", paper: "#F6F6FB" },
 ];
 
 const WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -242,7 +242,32 @@ export default function SettingsEditor() {
 
           {tab === "hero" && (
             <>
-              <Section title="Hero" text="An interactive dental arch: each tooth reveals a treatment inside the dome. Treatments come from the Treatments list.">
+              <Card className="p-6">
+                <div className="flex flex-wrap items-start justify-between gap-3">
+                  <div>
+                    <p className="text-[17px] font-semibold tracking-tight">Hero design</p>
+                    <p className="mt-0.5 text-sm text-black/50">Pick one of 5 layouts. Compare them all on the live preview page.</p>
+                  </div>
+                  <a href="/designs" target="_blank" className="rounded-full bg-black/5 px-4 py-2 text-sm font-medium">
+                    Compare all designs ↗
+                  </a>
+                </div>
+                <div className="mt-5 grid gap-2 sm:grid-cols-2 lg:grid-cols-5">
+                  {HERO_VARIANTS.map((v, i) => (
+                    <button
+                      key={v.key}
+                      type="button"
+                      onClick={() => up("hero", { variant: v.key })}
+                      className={cn("rounded-2xl p-4 text-left ring-1 transition", s.hero.variant === v.key ? "bg-ink text-white ring-ink" : "bg-white ring-black/5 hover:ring-black/20")}
+                    >
+                      <span className={cn("text-xs font-semibold", s.hero.variant === v.key ? "text-white/60" : "text-black/40")}>Design {i + 1}</span>
+                      <span className="mt-1 block font-semibold">{v.name}</span>
+                      <span className={cn("mt-1 block text-xs leading-snug", s.hero.variant === v.key ? "text-white/60" : "text-black/50")}>{v.text}</span>
+                    </button>
+                  ))}
+                </div>
+              </Card>
+              <Section title="Hero content" text="Used by every hero design.">
                 {text("hero", "eyebrow", "Eyebrow", { full: true })}
                 {text("hero", "title", "Headline — bold condensed")}
                 {text("hero", "highlight", "Headline — thin wide")}
@@ -253,10 +278,10 @@ export default function SettingsEditor() {
                 {text("hero", "ctaSecondary", "Secondary button")}
                 {text("hero", "rating", "Rating")}
                 {text("hero", "reviews", "Reviews label")}
-                <FieldWrap label="Welcome image (first slide inside the dome)" className="sm:col-span-2">
+                <FieldWrap label="Main smile image (Bento, Reveal, Orbit, Arch)" className="sm:col-span-2">
                   <ImageField value={s.hero.image} onChange={(v) => up("hero", { image: v })} />
                 </FieldWrap>
-                <FieldWrap label="Studio image (menu overlay)" className="sm:col-span-2">
+                <FieldWrap label="Clinic image (Cinematic hero and menu)" className="sm:col-span-2">
                   <ImageField value={s.hero.wideImage} onChange={(v) => up("hero", { wideImage: v })} />
                 </FieldWrap>
               </Section>

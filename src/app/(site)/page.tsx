@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { getDB } from "@/lib/db";
 import type { SectionKey } from "@/lib/types";
 import Hero from "@/components/site/sections/Hero";
+import Ticker from "@/components/site/sections/Ticker";
 import Statement from "@/components/site/sections/Statement";
 import Services from "@/components/site/sections/Services";
 import Stats from "@/components/site/sections/Stats";
@@ -17,7 +18,8 @@ import Blog from "@/components/site/sections/Blog";
 import Cta from "@/components/site/sections/Cta";
 import Contact from "@/components/site/sections/Contact";
 
-export default async function Home() {
+export default async function Home({ searchParams }: PageProps<"/">) {
+  const sp = await searchParams;
   const db = await getDB();
   const s = db.settings;
   const posts = db.posts.filter((p) => p.published);
@@ -41,7 +43,16 @@ export default async function Home() {
 
   return (
     <>
-      <Hero hero={s.hero} avatars={db.testimonials} services={db.services} />
+      <Hero
+        variant={typeof sp.hero === "string" ? sp.hero : s.hero.variant}
+        hero={s.hero}
+        avatars={db.testimonials}
+        services={db.services}
+        contact={s.contact}
+        gallery={db.gallery}
+        doctors={db.doctors}
+      />
+      <Ticker services={db.services} />
       {s.sections
         .filter((x) => x.enabled && render[x.key])
         .map((x) => (

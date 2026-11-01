@@ -42,6 +42,7 @@ export interface Settings {
     image: string;
     wideImage: string;
     caption: string;
+    variant: "bento" | "reveal" | "cinematic" | "orbit" | "arch";
     ctaPrimary: string;
     ctaSecondary: string;
     rating: string;

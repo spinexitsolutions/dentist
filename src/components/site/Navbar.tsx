@@ -158,7 +158,7 @@ export default function Navbar({ brand, contact, social, studioImage }: Props) {
       <AnimatePresence>
         {open && (
           <motion.div
-            className="fixed inset-0 z-[120] overflow-y-auto bg-accent text-ink"
+            className="fixed inset-0 z-[120] overflow-y-auto bg-ink text-paper"
             initial={{ clipPath: "circle(0% at 42px 88px)" }}
             animate={{ clipPath: "circle(150% at 42px 88px)" }}
             exit={{ clipPath: "circle(0% at 42px 88px)" }}
@@ -168,12 +168,12 @@ export default function Navbar({ brand, contact, social, studioImage }: Props) {
             <div className="flex min-h-full flex-col px-5 pb-32 pt-5 md:px-12 md:pb-10 md:pl-[132px]">
               <div className="flex items-center justify-between">
                 <span className="flex items-center gap-3 text-[15px] font-semibold">
-                  <span className="grid size-10 place-items-center rounded-xl bg-ink text-accent">
+                  <span className="grid size-10 place-items-center rounded-xl bg-accent text-white">
                     <ToothMark className="size-4" />
                   </span>
                   {brand.name}
                 </span>
-                <button onClick={() => setOpen(false)} className="grid size-12 place-items-center rounded-full bg-ink text-paper transition hover:rotate-90" aria-label="Close menu">
+                <button onClick={() => setOpen(false)} className="grid size-12 place-items-center rounded-full bg-paper text-ink transition hover:rotate-90" aria-label="Close menu">
                   <X className="size-5" />
                 </button>
               </div>
@@ -181,14 +181,14 @@ export default function Navbar({ brand, contact, social, studioImage }: Props) {
               <div className="mt-10 grid flex-1 gap-12 md:mt-6 md:grid-cols-[1.4fr_1fr] md:items-center">
                 <ul>
                   {NAV_LINKS.map((l, i) => (
-                    <li key={l.href} className="overflow-hidden border-b border-ink/15">
+                    <li key={l.href} className="overflow-hidden border-b border-paper/10">
                       <motion.div initial={{ y: "100%" }} animate={{ y: "0%" }} transition={{ duration: 0.8, ease: EASE, delay: 0.25 + i * 0.05 }}>
                         <Link href={l.href} className="group flex items-baseline gap-4 py-2 md:py-1.5">
                           <span className="w-8 text-[12px] font-semibold tabular-nums opacity-60">{l.fdi}</span>
-                          <span className="display text-[13vw] uppercase leading-[0.95] transition-[font-variation-settings,letter-spacing] duration-500 group-hover:[font-variation-settings:'wdth'_120] md:text-[5.6vw]">
+                          <span className="display text-[13vw] uppercase leading-[0.95] transition-[font-variation-settings,letter-spacing,color] duration-500 group-hover:text-pop group-hover:[font-variation-settings:'wdth'_120] md:text-[5.6vw]">
                             {l.label}
                           </span>
-                          {isActive(l.href) && <span className="ml-auto size-3 rounded-full bg-ink" />}
+                          {isActive(l.href) && <span className="ml-auto size-3 rounded-full bg-pop" />}
                         </Link>
                       </motion.div>
                     </li>
@@ -200,17 +200,17 @@ export default function Navbar({ brand, contact, social, studioImage }: Props) {
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={studioImage} alt="" className="size-full object-cover" />
                     {status && (
-                      <span className="absolute left-4 top-4 flex items-center gap-2 rounded-full bg-paper px-3 py-1.5 text-[12.5px] font-medium">
+                      <span className="absolute left-4 top-4 flex items-center gap-2 rounded-full bg-paper px-3 py-1.5 text-[12.5px] font-medium text-ink">
                         <span className={cn("size-2 rounded-full", status.open ? "bg-green-500" : "bg-amber-400")} />
                         {status.label}
                       </span>
                     )}
                   </div>
-                  <div className="rounded-[24px] bg-ink p-5 text-paper">
+                  <div className="rounded-[24px] bg-paper/[.06] p-5 text-paper ring-1 ring-paper/10">
                     <p className="text-[12px] font-semibold uppercase tracking-[0.2em] text-paper/50">Hours</p>
                     <ul className="mt-3 grid gap-x-6 gap-y-1.5 text-[13.5px] sm:grid-cols-2">
                       {contact.hours.map((h) => (
-                        <li key={h.day} className={cn("flex justify-between", h.day === today ? "text-accent" : "text-paper/75")}>
+                        <li key={h.day} className={cn("flex justify-between", h.day === today ? "text-pop" : "text-paper/75")}>
                           <span>{h.day.slice(0, 3)}</span>
                           <span>{h.closed ? "Closed" : `${formatTime(h.open)}–${formatTime(h.close)}`}</span>
                         </li>
@@ -218,17 +218,17 @@ export default function Navbar({ brand, contact, social, studioImage }: Props) {
                     </ul>
                   </div>
                   <div className="grid grid-cols-3 gap-2 text-[13px] font-medium">
-                    <a href={tel} className="flex flex-col items-center gap-2 rounded-2xl bg-paper/90 py-4">
+                    <a href={tel} className="flex flex-col items-center gap-2 rounded-2xl bg-paper/[.08] py-4 transition hover:bg-paper/15">
                       <Phone className="size-4" /> Call
                     </a>
-                    <a href={`https://wa.me/${contact.whatsapp}`} target="_blank" rel="noreferrer" className="flex flex-col items-center gap-2 rounded-2xl bg-paper/90 py-4">
+                    <a href={`https://wa.me/${contact.whatsapp}`} target="_blank" rel="noreferrer" className="flex flex-col items-center gap-2 rounded-2xl bg-paper/[.08] py-4 transition hover:bg-paper/15">
                       <WhatsappIcon className="size-4" /> WhatsApp
                     </a>
-                    <a href={social.instagram} target="_blank" rel="noreferrer" className="flex flex-col items-center gap-2 rounded-2xl bg-paper/90 py-4">
+                    <a href={social.instagram} target="_blank" rel="noreferrer" className="flex flex-col items-center gap-2 rounded-2xl bg-paper/[.08] py-4 transition hover:bg-paper/15">
                       <InstagramIcon className="size-4" /> Instagram
                     </a>
                   </div>
-                  <Link href="/book" className="group flex items-center justify-between rounded-full bg-ink py-2 pl-6 pr-2 font-semibold text-paper">
+                  <Link href="/book" className="group flex items-center justify-between rounded-full bg-accent py-2 pl-6 pr-2 font-semibold text-white">
                     Book a visit
                     <span className="grid size-11 place-items-center rounded-full bg-paper text-ink transition-transform group-hover:rotate-45">
                       <ArrowUpRight className="size-5" />

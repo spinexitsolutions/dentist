@@ -39,10 +39,10 @@ async function loadFromDisk(): Promise<DB> {
     const db = { ...seed, ...parsed } as DB;
     db.settings = deepDefaults(seed.settings, parsed.settings);
     // migrate the old v1 demo look (serif headline + teal) to the current design
-    if (["#0F9B8E", "#2B4BFF"].includes(db.settings.brand.accent.toUpperCase())) {
+    if (["#0F9B8E", "#2B4BFF", "#F2542D"].includes(db.settings.brand.accent.toUpperCase())) {
       Object.assign(db.settings.brand, { accent: seed.settings.brand.accent, pop: seed.settings.brand.pop, ink: seed.settings.brand.ink, paper: seed.settings.brand.paper });
     }
-    if (["Smiles,", "Smile"].includes(db.settings.hero.title)) {
+    if (["Smiles,", "Smile", "Every tooth,"].includes(db.settings.hero.title)) {
       Object.assign(db.settings.hero, { title: seed.settings.hero.title, highlight: seed.settings.hero.highlight, titleEnd: seed.settings.hero.titleEnd });
     }
     // make sure newly added sections show up in the list

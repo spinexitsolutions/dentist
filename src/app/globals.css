@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
 :root {
-  --accent: #f2542d;
-  --pop: #bfe3ff;
-  --ink: #16130f;
-  --paper: #f3eee6;
+  --accent: #1769e0;
+  --pop: #9ff0da;
+  --ink: #0b1e33;
+  --paper: #f4f7fa;
   --accent-soft: color-mix(in oklab, var(--accent) 14%, white);
   --accent-deep: color-mix(in oklab, var(--accent) 70%, black);
   --muted: color-mix(in oklab, var(--ink) 55%, var(--paper));
