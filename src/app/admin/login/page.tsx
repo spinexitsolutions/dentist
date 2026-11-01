@@ -14,7 +14,7 @@ export default function Login() {
       <div className="relative hidden overflow-hidden bg-ink p-12 text-white lg:flex lg:flex-col">
         <div className="pointer-events-none absolute -bottom-40 -left-40 size-[600px] rounded-full bg-accent/30 blur-[120px]" />
         <p className="relative text-lg font-semibold tracking-tight">
-          Ivory <span className="serif-i font-normal text-white/60">studio OS</span>
+          Ivory <span className="thin-word font-normal text-white/60">studio OS</span>
         </p>
         <div className="relative m-auto">
           <svg viewBox="0 0 100 100" className="size-56" fill="none">
@@ -23,7 +23,7 @@ export default function Login() {
           </svg>
         </div>
         <p className="relative max-w-md text-3xl font-medium leading-tight tracking-[-0.03em]">
-          Your entire practice — appointments, patients, leads and website — <span className="serif-i text-accent">in one calm place.</span>
+          Your entire practice — appointments, patients, leads and website — <span className="thin-word text-accent">in one calm place.</span>
         </p>
       </div>
       <div className="flex items-center justify-center p-6">

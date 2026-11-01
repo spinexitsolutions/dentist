@@ -70,7 +70,7 @@ export default async function ServicePage({ params }: PageProps<"/services/[slug
 
       <section className="container-x pb-24">
         <h2 className="display text-4xl md:text-5xl">
-          You may also <span className="serif-i text-accent">like</span>
+          You may also <span className="thin-word text-accent">like</span>
         </h2>
         <div className="mt-8 grid gap-4 md:grid-cols-3">
           {others.map((o) => (

@@ -125,7 +125,7 @@ export default function Intro({ intro, accent }: { intro: Settings["intro"]; acc
               ))}
             </h1>
             <motion.p
-              className="serif-i mt-2 text-2xl text-white/70 md:text-4xl"
+              className="thin-word mt-2 text-2xl text-white/70 md:text-4xl"
               initial={{ opacity: 0, y: 16, filter: "blur(6px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ duration: 1, delay: 0.5, ease: EASE }}

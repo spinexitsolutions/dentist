@@ -32,7 +32,7 @@ export function Reveal({
   className,
   delay = 0,
   y = 28,
-  blur = true,
+  blur = false,
   once = true,
   ...rest
 }: { children: ReactNode; className?: string; delay?: number; y?: number; blur?: boolean; once?: boolean } & HTMLMotionProps<"div">) {

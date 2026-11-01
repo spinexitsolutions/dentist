@@ -41,7 +41,7 @@ export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
       </Reveal>
       <div className="container-x max-w-2xl py-16 text-[18px] leading-[1.75] text-ink/85">
         {p.content.split(/\n{2,}/).map((para, i) => (
-          <p key={i} className="mb-6 first-of-type:first-letter:float-left first-of-type:first-letter:mr-3 first-of-type:first-letter:font-serif first-of-type:first-letter:text-7xl first-of-type:first-letter:leading-[0.8] first-of-type:first-letter:text-accent">
+          <p key={i} className="mb-6 first-of-type:first-letter:float-left first-of-type:first-letter:mr-3 first-of-type:first-letter:font-display first-of-type:first-letter:font-semibold first-of-type:first-letter:text-7xl first-of-type:first-letter:leading-[0.8] first-of-type:first-letter:text-accent">
             {para}
           </p>
         ))}
@@ -49,7 +49,7 @@ export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
       {more.length > 0 && (
         <section className="container-x border-t border-line py-20">
           <h2 className="display text-4xl">
-            Keep <span className="serif-i text-accent">reading</span>
+            Keep <span className="thin-word text-accent">reading</span>
           </h2>
           <div className="mt-10 grid gap-10 md:grid-cols-3 md:gap-6">
             {more.map((m, i) => (

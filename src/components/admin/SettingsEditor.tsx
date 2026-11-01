@@ -23,12 +23,12 @@ const TABS = [
 type Tab = (typeof TABS)[number]["id"];
 
 const PRESETS = [
-  { name: "Mint", accent: "#0F9B8E", ink: "#0B0D10", paper: "#F4F2EE" },
-  { name: "Cobalt", accent: "#2F5BFF", ink: "#0A0C14", paper: "#F3F4F7" },
-  { name: "Coral", accent: "#F2653A", ink: "#141110", paper: "#F6F1EC" },
-  { name: "Lavender", accent: "#7C5CFF", ink: "#0E0C14", paper: "#F4F2F8" },
-  { name: "Sage", accent: "#5E8B6A", ink: "#101410", paper: "#F2F1EA" },
-  { name: "Noir", accent: "#C8A26B", ink: "#0B0B0B", paper: "#F3F0EA" },
+  { name: "Cobalt × Lime", accent: "#2B4BFF", pop: "#D4FF3A", ink: "#0A0E1A", paper: "#F2F3EF" },
+  { name: "Ultraviolet", accent: "#6A3DFF", pop: "#FFD43B", ink: "#0E0B18", paper: "#F4F2F8" },
+  { name: "Tangerine", accent: "#FF5A1F", pop: "#C8F7DC", ink: "#16110E", paper: "#F6F2EC" },
+  { name: "Ocean", accent: "#0077FF", pop: "#7CFFCB", ink: "#06121F", paper: "#F1F4F6" },
+  { name: "Forest", accent: "#1F7A4D", pop: "#E9FF70", ink: "#0C130F", paper: "#F2F1EA" },
+  { name: "Noir Gold", accent: "#C8A26B", pop: "#F5E6C8", ink: "#0B0B0B", paper: "#F3F0EA" },
 ];
 
 const WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -144,10 +144,11 @@ export default function SettingsEditor() {
                   {PRESETS.map((p) => {
                     const active = p.accent.toLowerCase() === s.brand.accent.toLowerCase();
                     return (
-                      <button key={p.name} onClick={() => up("brand", { accent: p.accent, ink: p.ink, paper: p.paper })} className={cn("rounded-2xl p-2 text-left ring-1 transition", active ? "ring-2 ring-ink" : "ring-black/5 hover:ring-black/20")}>
+                      <button key={p.name} onClick={() => up("brand", { accent: p.accent, pop: p.pop, ink: p.ink, paper: p.paper })} className={cn("rounded-2xl p-2 text-left ring-1 transition", active ? "ring-2 ring-ink" : "ring-black/5 hover:ring-black/20")}>
                         <span className="flex h-12 overflow-hidden rounded-xl">
                           <span className="flex-1" style={{ background: p.paper }} />
                           <span className="flex-1" style={{ background: p.accent }} />
+                          <span className="flex-1" style={{ background: p.pop }} />
                           <span className="flex-1" style={{ background: p.ink }} />
                         </span>
                         <span className="mt-1.5 block text-xs font-medium">{p.name}</span>
@@ -155,9 +156,9 @@ export default function SettingsEditor() {
                     );
                   })}
                 </div>
-                <div className="mt-5 grid gap-4 sm:grid-cols-3">
-                  {(["accent", "ink", "paper"] as const).map((k) => (
-                    <FieldWrap key={k} label={k === "accent" ? "Accent" : k === "ink" ? "Text / dark" : "Background"}>
+                <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                  {(["accent", "pop", "ink", "paper"] as const).map((k) => (
+                    <FieldWrap key={k} label={{ accent: "Accent", pop: "Highlight (pop)", ink: "Text / dark", paper: "Background" }[k]}>
                       <div className="flex items-center gap-2 rounded-xl bg-black/[.035] p-1.5">
                         <input type="color" value={s.brand[k]} onChange={(e) => up("brand", { [k]: e.target.value })} className="size-9 cursor-pointer rounded-lg border-0 bg-transparent" />
                         <input value={s.brand[k]} onChange={(e) => up("brand", { [k]: e.target.value })} className="min-w-0 flex-1 bg-transparent font-mono text-sm uppercase outline-none" />
@@ -166,11 +167,16 @@ export default function SettingsEditor() {
                   ))}
                 </div>
                 <div className="mt-5 overflow-hidden rounded-2xl p-6" style={{ background: s.brand.paper, color: s.brand.ink }}>
-                  <p className="text-3xl font-semibold tracking-[-0.04em]">
-                    Smiles, <span className="serif-i" style={{ color: s.brand.accent }}>crafted</span> with precision.
+                  <p className="display text-4xl">
+                    {s.hero.title} <span className="thin-word" style={{ color: s.brand.accent }}>{s.hero.highlight}</span>
                   </p>
-                  <span className="mt-4 inline-flex rounded-full px-4 py-2 text-sm font-medium text-white" style={{ background: s.brand.ink }}>
-                    Book a visit
+                  <span className="mt-4 flex gap-2">
+                    <span className="inline-flex rounded-full px-4 py-2 text-sm font-medium text-white" style={{ background: s.brand.ink }}>
+                      Book a visit
+                    </span>
+                    <span className="inline-flex rounded-full px-4 py-2 text-sm font-medium" style={{ background: s.brand.pop, color: s.brand.ink }}>
+                      Free 3D scan
+                    </span>
                   </span>
                 </div>
               </Card>
@@ -222,7 +228,7 @@ export default function SettingsEditor() {
                     <motion.p initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.8 }} className="text-5xl font-semibold tracking-[-0.06em]">
                       {s.intro.line1}
                     </motion.p>
-                    <motion.p initial={{ opacity: 0 }} animate={{ opacity: 0.7 }} transition={{ delay: 0.4 }} className="serif-i mt-1 text-xl">
+                    <motion.p initial={{ opacity: 0 }} animate={{ opacity: 0.7 }} transition={{ delay: 0.4 }} className="thin-word mt-1 text-xl">
                       {s.intro.line2}
                     </motion.p>
                     <motion.span className="absolute bottom-0 left-0 h-0.5" style={{ background: s.brand.accent }} initial={{ width: 0 }} animate={{ width: "100%" }} transition={{ duration: s.intro.duration, ease: "linear" }} />
@@ -235,11 +241,12 @@ export default function SettingsEditor() {
 
           {tab === "hero" && (
             <>
-              <Section title="Hero" text="Headline is shown as: Title + italic highlight + ending.">
+              <Section title="Hero" text="Two giant words frame the capsule image, which expands to full screen as visitors scroll.">
                 {text("hero", "eyebrow", "Eyebrow", { full: true })}
-                {text("hero", "title", "Title start")}
-                {text("hero", "highlight", "Italic highlight word")}
-                {text("hero", "titleEnd", "Title end", { full: true })}
+                {text("hero", "title", "Big word — left")}
+                {text("hero", "highlight", "Big word — right (thin)")}
+                {text("hero", "titleEnd", "Kicker line", { full: true })}
+                {text("hero", "caption", "Caption shown when the image fills the screen", { full: true })}
                 {text("hero", "subtitle", "Subtitle", { area: true })}
                 {text("hero", "ctaPrimary", "Primary button")}
                 {text("hero", "ctaSecondary", "Secondary button")}

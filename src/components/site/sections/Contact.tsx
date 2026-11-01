@@ -76,7 +76,7 @@ export default function Contact({ contact }: { contact: Settings["contact"] }) {
       <div className="mt-4 grid gap-8 rounded-[28px] bg-card p-6 ring-1 ring-line md:grid-cols-[1fr_1.4fr] md:p-10">
         <div>
           <h3 className="display text-4xl md:text-5xl">
-            Send us a <span className="serif-i text-accent">note.</span>
+            Send us a <span className="thin-word text-accent">note.</span>
           </h3>
           <p className="mt-4 text-muted">Questions about a treatment, pricing or insurance? Drop us a line and our care coordinator will call you back.</p>
         </div>

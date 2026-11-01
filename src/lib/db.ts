@@ -38,6 +38,13 @@ async function loadFromDisk(): Promise<DB> {
     const parsed = JSON.parse(raw) as Partial<DB>;
     const db = { ...seed, ...parsed } as DB;
     db.settings = deepDefaults(seed.settings, parsed.settings);
+    // migrate the old v1 demo look (serif headline + teal) to the current design
+    if (db.settings.brand.accent.toUpperCase() === "#0F9B8E") {
+      Object.assign(db.settings.brand, { accent: seed.settings.brand.accent, pop: seed.settings.brand.pop, ink: seed.settings.brand.ink, paper: seed.settings.brand.paper });
+    }
+    if (db.settings.hero.title === "Smiles,") {
+      Object.assign(db.settings.hero, { title: seed.settings.hero.title, highlight: seed.settings.hero.highlight, titleEnd: seed.settings.hero.titleEnd });
+    }
     // make sure newly added sections show up in the list
     const keys = new Set(db.settings.sections.map((s) => s.key));
     for (const s of seed.settings.sections) if (!keys.has(s.key)) db.settings.sections.push(s);

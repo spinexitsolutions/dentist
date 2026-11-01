@@ -116,7 +116,7 @@ export default function BookingWizard({
           </motion.span>
         </div>
         <h2 className="display mt-8 text-4xl md:text-5xl">
-          You&apos;re booked, <span className="serif-i text-accent">{done.name.split(" ")[0]}.</span>
+          You&apos;re booked, <span className="thin-word text-accent">{done.name.split(" ")[0]}.</span>
         </h2>
         <p className="mt-4 text-muted">We&apos;ll confirm your appointment on WhatsApp shortly.</p>
         <div className="mt-8 grid grid-cols-2 gap-3 text-left text-sm">

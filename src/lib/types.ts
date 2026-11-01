@@ -20,6 +20,7 @@ export interface Settings {
     shortName: string;
     tagline: string;
     accent: string;
+    pop: string;
     ink: string;
     paper: string;
   };
@@ -40,6 +41,7 @@ export interface Settings {
     subtitle: string;
     image: string;
     wideImage: string;
+    caption: string;
     ctaPrimary: string;
     ctaSecondary: string;
     rating: string;

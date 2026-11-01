@@ -9,8 +9,9 @@ import { WhatsappIcon } from "./icons";
 export function Announcement({ a }: { a: Settings["announcement"] }) {
   if (!a.enabled) return null;
   return (
-    <Link href={a.link || "/book"} className="group relative z-10 block bg-ink px-4 py-2.5 text-center text-[12.5px] text-white/80 md:fixed md:inset-x-0 md:top-0 md:hidden">
-      <span className="text-shimmer !bg-[linear-gradient(90deg,#fff_0%,var(--accent)_40%,#fff_60%)] font-medium">{a.text}</span>
+    <Link href={a.link || "/book"} className="group relative z-10 block bg-ink px-4 py-2.5 text-center text-[12.5px] text-white/80 md:py-3 md:text-[13px]">
+      <span className="mr-2 rounded-full bg-pop px-2 py-0.5 text-[10.5px] font-semibold text-ink">NEW</span>
+      <span className="font-medium text-white">{a.text}</span>
       <ArrowRight className="ml-1.5 inline size-3.5 transition-transform group-hover:translate-x-1" />
     </Link>
   );
@@ -34,7 +35,7 @@ export function MobileTopBar({ brand, phone }: { brand: Settings["brand"]; phone
     <div className="container-x flex items-center justify-between pt-4 md:hidden">
       <Link href="/" className="text-lg font-semibold tracking-tight">
         {brand.shortName}
-        <span className="serif-i ml-1 font-normal text-muted">dental studio</span>
+        <span className="thin-word ml-1 font-normal text-muted">dental studio</span>
       </Link>
       <a href={`tel:${phone.replace(/\s/g, "")}`} className="grid size-10 place-items-center rounded-full bg-white/70 ring-1 ring-line" aria-label="Call">
         <Phone className="size-4" />
@@ -65,7 +66,7 @@ export function PageHeader({ eyebrow, title, italic, text }: { eyebrow: string; 
   return (
     <section className="container-x pb-10 pt-14 md:pb-16 md:pt-40">
       <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="eyebrow flex items-center gap-3">
-        <span className="h-px w-10 bg-ink/30" />
+        <span className="size-1.5 rounded-full bg-accent" />
         {eyebrow}
       </motion.p>
       <h1 className="display mt-5 max-w-5xl text-[3.2rem] md:text-[7rem]">
@@ -73,7 +74,7 @@ export function PageHeader({ eyebrow, title, italic, text }: { eyebrow: string; 
           {title}
         </motion.span>{" "}
         {italic && (
-          <motion.span initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.1 }} className="serif-i inline-block text-accent">
+          <motion.span initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.1 }} className="thin-word inline-block text-accent">
             {italic}
           </motion.span>
         )}

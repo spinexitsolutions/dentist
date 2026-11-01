@@ -28,7 +28,7 @@ export default async function SiteLayout({ children }: LayoutProps<"/">) {
       <SmoothScroll />
       <Announcement a={s.announcement} />
       <MobileTopBar brand={s.brand} phone={s.contact.phone} />
-      <Navbar brand={s.brand} contact={s.contact} social={s.social} previews={previews} />
+      <Navbar brand={s.brand} contact={s.contact} social={s.social} previews={previews} hasBar={s.announcement.enabled} />
       <main>{children}</main>
       <Footer brand={s.brand} contact={s.contact} social={s.social} services={db.services} />
       <FloatingWhatsapp number={s.contact.whatsapp} />

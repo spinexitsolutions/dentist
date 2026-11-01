@@ -48,7 +48,7 @@ export default function Footer({ brand, contact, social, services }: { brand: Se
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
             <p className="display text-4xl md:text-5xl">
-              Smile <span className="serif-i text-accent">often.</span>
+              Smile <span className="thin-word text-accent">often.</span>
             </p>
             <p className="mt-4 max-w-sm text-white/60">Monthly notes on oral health, new treatments and members-only offers. No spam, ever.</p>
             <div className="mt-6">

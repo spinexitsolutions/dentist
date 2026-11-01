@@ -1,8 +1,7 @@
 import type { ReactNode } from "react";
 import { getDB } from "@/lib/db";
 import type { SectionKey } from "@/lib/types";
-import { DesktopAnnouncement } from "@/components/site/Chrome";
-import Hero, { ExpandImage } from "@/components/site/sections/Hero";
+import Hero from "@/components/site/sections/Hero";
 import Statement from "@/components/site/sections/Statement";
 import Services from "@/components/site/sections/Services";
 import Stats from "@/components/site/sections/Stats";
@@ -24,12 +23,7 @@ export default async function Home() {
   const posts = db.posts.filter((p) => p.published);
 
   const render: Record<SectionKey, () => ReactNode> = {
-    statement: () => (
-      <>
-        <Statement text={s.statement.text} />
-        <ExpandImage image={s.hero.wideImage} caption={`Step inside the *calmest* dental studio in the city.`} />
-      </>
-    ),
+    statement: () => <Statement text={s.statement.text} />,
     services: () => <Services services={db.services} />,
     stats: () => <Stats stats={db.stats} />,
     about: () => <About about={s.about} brand={s.brand} />,
@@ -47,7 +41,6 @@ export default async function Home() {
 
   return (
     <>
-      <DesktopAnnouncement a={s.announcement} />
       <Hero hero={s.hero} avatars={db.testimonials} serviceTitles={db.services.map((x) => x.title)} />
       {s.sections
         .filter((x) => x.enabled && render[x.key])

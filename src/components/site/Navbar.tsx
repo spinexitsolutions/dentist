@@ -53,10 +53,11 @@ function useStatus(hours: Settings["contact"]["hours"]) {
   return s;
 }
 
-export default function Navbar({ brand, contact, social, previews }: Props) {
+export default function Navbar({ brand, contact, social, previews, hasBar = false }: Props & { hasBar?: boolean }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [compact, setCompact] = useState(false);
+  const [atTop, setAtTop] = useState(true);
   const [hover, setHover] = useState<string | null>(null);
   const [preview, setPreview] = useState(NAV_LINKS[1].href);
   const status = useStatus(contact.hours);
@@ -64,6 +65,7 @@ export default function Navbar({ brand, contact, social, previews }: Props) {
 
   useMotionValueEvent(scrollY, "change", (y) => {
     const prev = scrollY.getPrevious() ?? 0;
+    setAtTop(y < 40);
     if (y < 120) setCompact(false);
     else if (y > prev + 4) setCompact(true);
     else if (y < prev - 8) setCompact(false);
@@ -100,7 +102,7 @@ export default function Navbar({ brand, contact, social, previews }: Props) {
       </AnimatePresence>
 
       {/* ===================== Desktop island (top) ===================== */}
-      <div className="pointer-events-none fixed inset-x-0 top-4 z-50 hidden justify-center md:flex">
+      <div className={cn("pointer-events-none fixed inset-x-0 z-50 hidden justify-center transition-[top] duration-500 ease-[var(--ease-out-expo)] md:flex", atTop && hasBar ? "top-[52px]" : "top-4")}>
         <motion.nav
           layout
           transition={SPRING}
@@ -122,7 +124,7 @@ export default function Navbar({ brand, contact, social, previews }: Props) {
                       className="overflow-hidden whitespace-nowrap text-[15px] font-semibold tracking-tight"
                     >
                       {brand.shortName}
-                      <span className="serif-i ml-1 text-white/60">dental</span>
+                      <span className="thin-word ml-1 text-white/60">dental</span>
                     </motion.span>
                   )}
                 </AnimatePresence>
@@ -202,7 +204,7 @@ export default function Navbar({ brand, contact, social, previews }: Props) {
                         <span className={cn("text-[2.6rem] font-medium leading-[1.05] tracking-[-0.04em] transition-all duration-500 group-hover:translate-x-2", preview === l.href ? "text-white" : "text-white/45")}>
                           {l.label}
                         </span>
-                        {isActive(l.href) && <span className="serif-i text-lg text-accent">current</span>}
+                        {isActive(l.href) && <span className="thin-word text-lg text-accent">current</span>}
                       </Link>
                     </motion.li>
                   ))}
@@ -243,7 +245,7 @@ export default function Navbar({ brand, contact, social, previews }: Props) {
               </div>
               <div className="mt-3 flex items-center justify-between rounded-[22px] bg-accent px-5 py-4 text-white">
                 <span className="text-lg font-medium tracking-tight">
-                  New here? <span className="serif-i">Your first 3D scan is on us.</span>
+                  New here? <span className="thin-word">Your first 3D scan is on us.</span>
                 </span>
                 <Link href="/book" className="flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium text-ink">
                   Book now <ArrowUpRight className="size-4" />
@@ -315,7 +317,7 @@ export default function Navbar({ brand, contact, social, previews }: Props) {
             </Link>
             <button onClick={() => setOpen((o) => !o)} className="flex min-w-0 flex-1 flex-col items-start px-1 text-left" aria-expanded={open}>
               <span className="truncate text-[14px] font-semibold leading-tight tracking-tight">
-                {brand.shortName} <span className="serif-i font-normal text-white/60">dental</span>
+                {brand.shortName} <span className="thin-word font-normal text-white/60">dental</span>
               </span>
               <span className="flex items-center gap-1.5 text-[11px] text-white/50">
                 {status && <span className={cn("size-1.5 rounded-full", status.open ? "bg-green-400" : "bg-amber-400")} />}

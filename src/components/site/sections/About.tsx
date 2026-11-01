@@ -46,7 +46,7 @@ export default function About({ about, brand }: { about: Settings["about"]; bran
         <div className="order-1 md:order-2">
           <Reveal>
             <p className="eyebrow flex items-center gap-3">
-              <span className="h-px w-10 bg-ink/30" />
+              <span className="size-1.5 rounded-full bg-accent" />
               {about.eyebrow}
             </p>
           </Reveal>

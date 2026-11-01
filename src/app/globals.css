@@ -1,9 +1,10 @@
 @import "tailwindcss";
 
 :root {
-  --accent: #0f9b8e;
-  --ink: #0b0d10;
-  --paper: #f4f2ee;
+  --accent: #2b4bff;
+  --pop: #d4ff3a;
+  --ink: #0a0e1a;
+  --paper: #f2f3ef;
   --accent-soft: color-mix(in oklab, var(--accent) 14%, white);
   --accent-deep: color-mix(in oklab, var(--accent) 70%, black);
   --muted: color-mix(in oklab, var(--ink) 55%, var(--paper));
@@ -14,6 +15,7 @@
 
 @theme inline {
   --color-accent: var(--accent);
+  --color-pop: var(--pop);
   --color-accent-soft: var(--accent-soft);
   --color-accent-deep: var(--accent-deep);
   --color-ink: var(--ink);
@@ -21,9 +23,9 @@
   --color-muted: var(--muted);
   --color-line: var(--line);
   --color-card: var(--card);
-  --font-sans: var(--font-inter-tight), ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-serif: var(--font-instrument), ui-serif, Georgia, serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-sans: var(--font-onest), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-bricolage), var(--font-onest), ui-sans-serif, sans-serif;
+  --font-mono: var(--font-onest), ui-sans-serif, sans-serif;
   --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -35,8 +37,8 @@ html {
 body {
   background: var(--paper);
   color: var(--ink);
-  font-family: var(--font-sans);
-  font-feature-settings: "ss01", "cv11";
+  font-family: var(--font-onest), ui-sans-serif, system-ui, sans-serif;
+  font-feature-settings: "ss01";
   overflow-x: clip;
 }
 
@@ -71,24 +73,28 @@ html.lenis body {
 }
 
 @utility eyebrow {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.14em;
+  font-family: var(--font-onest);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--muted);
 }
 
 @utility display {
+  font-family: var(--font-bricolage);
   font-weight: 600;
-  letter-spacing: -0.045em;
-  line-height: 0.95;
+  letter-spacing: -0.05em;
+  line-height: 0.92;
+  font-variation-settings: "wdth" 90;
 }
 
-@utility serif-i {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 400;
-  letter-spacing: -0.02em;
+/* Sans-only contrast accent: a light-weight word inside a bold headline */
+@utility thin-word {
+  font-family: var(--font-bricolage);
+  font-style: normal;
+  font-weight: 250;
+  letter-spacing: -0.045em;
 }
 
 @utility glass {
@@ -180,4 +186,13 @@ html.lenis body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
   }
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-bricolage);
+}
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
 }
